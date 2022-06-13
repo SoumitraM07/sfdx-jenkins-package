@@ -49,7 +49,7 @@ node {
             // -------------------------------------------------------------------------
 
             stage('Create Test Scratch Org') {
-                rc1 = command "${toolbelt}/sfdx force:auth:logout --targetusername HubOrg"
+                rc1 = command "${toolbelt}/sfdx force:auth:logout --targetusername HubOrg -y"
                 rc2 = command "${toolbelt}/sfdx force:auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --username ${SF_USERNAME} --jwtkeyfile ${server_key_file} --setdefaultdevhubusername --setalias HubOrg"
 
                 rc = command "${toolbelt}/sfdx force:org:create --targetdevhubusername HubOrg --setdefaultusername --definitionfile config/project-scratch-def.json --setalias ciorg --wait 10 --durationdays 1"
